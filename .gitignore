@@ -1,0 +1,12 @@
+# Dependencies and build output
+node_modules/
+infra/cdk.out/
+__pycache__/
+
+# Local, account-specific files (never commit)
+infra/config.json
+infra/cdk.context.json
+*.log
+*.err
+infra/report-output.json
+infra/seed-output.json

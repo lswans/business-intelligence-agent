@@ -1,0 +1,31 @@
+{
+  "name": "business-intelligence-agent-infra",
+  "version": "1.0.0",
+  "description": "",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "tsc",
+    "synth": "cdk synth",
+    "deploy": "cdk deploy --require-approval never",
+    "destroy": "cdk destroy",
+    "trigger": "aws lambda invoke --region us-east-1 --function-name bi-agent-daily-report --cli-read-timeout 180 --payload \"{\\\"source\\\":\\\"manual\\\"}\" --cli-binary-format raw-in-base64-out report-output.json && node -p \"require('fs').readFileSync('report-output.json','utf8')\"",
+    "reseed": "aws lambda invoke --region us-east-1 --function-name bi-agent-seed-data --cli-read-timeout 180 --payload \"{\\\"RequestType\\\":\\\"Update\\\"}\" --cli-binary-format raw-in-base64-out seed-output.json && node -p \"require('fs').readFileSync('seed-output.json','utf8')\"",
+    "trigger:dry": "aws lambda invoke --region us-east-1 --function-name bi-agent-daily-report --cli-read-timeout 180 --payload \"{\\\"source\\\":\\\"manual\\\",\\\"dryRun\\\":true}\" --cli-binary-format raw-in-base64-out report-output.json && node -p \"require('fs').readFileSync('report-output.json','utf8')\""
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "aws-cdk-lib": "^2.275.0",
+    "constructs": "^10.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "aws-cdk": "^2.1146.1",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.9"
+  },
+  "private": true
+}

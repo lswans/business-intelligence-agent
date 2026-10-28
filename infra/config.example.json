@@ -1,0 +1,5 @@
+{
+  "emailAddress": "you@example.com",
+  "additionalRecipients": ["teammate@example.com"],
+  "senderAddress": "you@example.com"
+}
